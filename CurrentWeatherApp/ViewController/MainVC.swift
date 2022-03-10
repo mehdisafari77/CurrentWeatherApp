@@ -46,6 +46,18 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     //MARK: - Weather
+    func updateWeather(latValue: String, lonValue: String) {
+        
+        weatherController.fetchWeather(lat: latValue, lon: lonValue) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let details):
+                print(details)
+                self?.updateViews(weatherInfo: details)
+            }
+        }
+    }
 
     /**
      Updates the labels with the weather details
@@ -57,10 +69,15 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     func updateViews(weatherInfo: WeatherInfo) {
         Dispatch.DispatchQueue.main.async {
             self.cityLabel.text = "City: \(weatherInfo.name)"
+            
             self.tempLabel.text = "\(weatherInfo.main.temp)°"
+            
             self.mainDescriptionLabel.text = weatherInfo.weather.first?.main ?? "No data found"
+            
             self.subDescriptionLabel.text = weatherInfo.weather.first?.description ?? "No data found"
+            
             self.maxTempLabel.text = "Max: \(weatherInfo.main.tempMax)°"
+            
             self.minTempLabel.text = "Min: \(weatherInfo.main.tempMin)°"
         }
     }
