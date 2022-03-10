@@ -41,8 +41,9 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-
+        if CLLocationManager.locationServicesEnabled() {
+            updateWeather(latValue: coordinates.myLatitude, lonValue: coordinates.myLongitude)
+        }
     }
     
     //MARK: - Weather
@@ -104,6 +105,9 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
         guard let locationValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        
+        coordinates = ("\(locationValue.latitude)", "\(locationValue.longitude)")
+        print("🌏 didUdateLocations: locations = \(coordinates.myLatitude) \(coordinates.myLongitude)")
 
     }
 
