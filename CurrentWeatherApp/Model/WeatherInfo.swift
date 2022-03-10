@@ -12,6 +12,12 @@ struct WeatherInfo: Decodable {
     var coord: Coord
     var name: String
     var main: Main
+    var weather: [Weather]
+}
+
+struct Weather: Decodable {
+    var main: String
+    var description: String
 }
 
 struct Coord: Decodable {
@@ -30,5 +36,7 @@ struct Main: Decodable {
         case temp = "temp"
     }
 }
+
+
 
 
