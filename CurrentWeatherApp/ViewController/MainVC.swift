@@ -31,7 +31,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
 
         //TODO: - add background UI
-        
+        self.view.addVerticalGradientLayer()
 
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -47,8 +47,6 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     //MARK: - Weather
 
-
-
     /**
      Updates the labels with the weather details
      - weatherInfo  this is taken from your weather info model
@@ -58,12 +56,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
      */
     func updateViews(weatherInfo: WeatherInfo) {
         Dispatch.DispatchQueue.main.async {
-            //            self.cityLabel.text = "City: \(weatherInfo.name)"
-            //            self.tempLabel.text = String(weatherInfo.main.temp)
-            //            self.mainDescriptionLabel.text = weatherInfo.weather.first?.main ?? "No data found"
-            //            self.subDescriptionLabel.text = weatherInfo.weather.first?.description ?? "No data found"
-            //            self.maxTempLabel.text = "Max: \(weatherInfo.main.tempMax)"
-            //            self.minTempLabel.text = "Min: \(weatherInfo.main.tempMin)"
+            self.cityLabel.text = "City: \(weatherInfo.name)"
+            self.tempLabel.text = "\(weatherInfo.main.temp)°"
+            self.mainDescriptionLabel.text = weatherInfo.weather.first?.main ?? "No data found"
+            self.subDescriptionLabel.text = weatherInfo.weather.first?.description ?? "No data found"
+            self.maxTempLabel.text = "Max: \(weatherInfo.main.tempMax)°"
+            self.minTempLabel.text = "Min: \(weatherInfo.main.tempMin)°"
         }
     }
 
