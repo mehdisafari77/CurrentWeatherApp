@@ -24,9 +24,9 @@ struct WeatherController {
             return
         }
         
-        url.appendingPathComponent("data")
-        url.appendingPathComponent("2.5")
-        url.appendingPathComponent("weather")
+        url.appendPathComponent("data")
+        url.appendPathComponent("2.5")
+        url.appendPathComponent("weather")
         
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
 

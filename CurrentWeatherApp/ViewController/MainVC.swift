@@ -22,7 +22,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     var coordinates = (myLatitude: "", myLongitude: "") {
         didSet {
-            //TODO: - update with new vals
+            updateWeather(latValue: coordinates.myLatitude, lonValue: coordinates.myLongitude)
         }
     }
 
