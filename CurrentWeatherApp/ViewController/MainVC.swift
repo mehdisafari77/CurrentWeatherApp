@@ -18,12 +18,20 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var maxTempLabel: UILabel!
 
     private let locationManager = CLLocationManager()
+    private let weatherController = WeatherController()
+    
+    var coordinates = (myLatitude: "", myLongitude: "") {
+        didSet {
+            //TODO: - update with new vals
+        }
+    }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //TODO: - add background UI
+        
 
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
